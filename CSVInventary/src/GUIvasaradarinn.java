@@ -97,42 +97,7 @@ public class GUIvasaradarinn extends JFrame {
 		});
 	}
 
-/*	public void actionPerformed(ActionEvent evt) {
-		Object source = evt.getSource();
-		if (source == bLeita) {
-			// The Button Go processing
-			try {
-				// put in a constractor to read a file in a prog sturtup
-				StackReader sr = new StackReader();
-				txtFetchedVasaN.setText(sr.SearchVasan(txtPontunarNumer
-						.getText()));
-				
-			int n = JOptionPane.showConfirmDialog(bLeita, "I Vasa No. "+sr.SearchVasan(txtPontunarNumer
-					.getText())+" Delete?" , null, JOptionPane.YES_NO_OPTION);
-				if (n == JOptionPane.YES_OPTION){
-					//StackReader sr = new StackReader();
-					sr.DeletePontun(txtPontunarNumer.getText());
 
-					txtPontunarNumer.setText("");
-					txtFetchedVasaN.setText("");
-				}
-				else if (n== JOptionPane.NO_OPTION){
-					
-				}
-					
-					
-					
-					
-					
-					
-
-			} catch (NumberFormatException e) {
-				txtFetchedVasaN.setText("Non-Numeric Data");
-			} catch (Exception e) {
-				txtFetchedVasaN.setText(e.getMessage());
-			}
-		} 
-	}*/
  public void fetchVasa (){
 	 try {
 			// put in a constractor to read a file in a prog sturtup
