@@ -95,7 +95,13 @@ public class StackReader {
 		    for (String s : result) {
 		    	String semicol = ";";
 		      System.out.print(s + ", ");
+		      // adding a "rekka msg to output for values bigger then 1000
+		      if (Integer.parseInt(s)>=1000){
+		    	  vasaN = vasaN.concat("i rekka"+ s + semicol);
+		    	  
+		      }else{
 		      vasaN=vasaN.concat(s) .concat(semicol);
+		      }
 		    }
 
 		return vasaN;
