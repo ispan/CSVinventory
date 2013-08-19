@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 //import java.io.File;
@@ -22,7 +23,8 @@ public class StackReader {
 	ArrayList<DTOPontunVasar> allarpontunar = new ArrayList<DTOPontunVasar>();
 	// HASHtable hashmap key-value pairs
 	ArrayList<String> vasaArray = new ArrayList<String>();
-	private BufferedWriter out;
+	private BufferedWriter out = null;
+	private FileOutputStream fos = null;
 
 	StackReader() { // throws IOException
 
@@ -96,11 +98,12 @@ public class StackReader {
 		    	String semicol = ";";
 		      System.out.print(s + ", ");
 		      // adding a "rekka msg to output for values bigger then 1000
-		      if (Integer.parseInt(s)>=1000){
-		    	  vasaN = vasaN.concat("i rekka"+ s + semicol);
+		      // Ispan marking rekkar from 1 to 2999 . available figures are >=3000 
+		      if (Integer.parseInt(s)<=3000){
+		    	  vasaN = vasaN.concat(" Rekka#"+ s + semicol);
 		    	  
 		      }else{
-		      vasaN=vasaN.concat(s) .concat(semicol);
+		      vasaN=vasaN.concat(" inni-"+s.substring(1)+ semicol);
 		      }
 		    }
 
@@ -124,7 +127,8 @@ public class StackReader {
 	public void DeletePontun(String pontunToDelete) {
 	
 		try {
-			FileOutputStream fos = null;
+			//FileOutputStream fos = null;
+		
 			fos = new FileOutputStream("VasaSkra.dat");
 			out = new BufferedWriter(new OutputStreamWriter(fos));
 			for (DTOPontunVasar pairToWrite : allarpontunar) {
@@ -143,11 +147,23 @@ public class StackReader {
 			}
 
 			// Flush the BUFFER !!!
-			out.flush();
-			fos.close();
+			
+			// finally  do  close 
 		} catch (IOException e) {
 			System.out.println(e);
 		} finally {
+			try {
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e);
+			}
+			try {
+				fos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e);
+			}
 		}
 	}
 }

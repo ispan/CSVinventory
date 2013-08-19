@@ -1,5 +1,6 @@
 //import java.awt.Color;
 import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,13 +25,14 @@ public class GUIvasaradarinn extends JFrame {
 
 	JTextField txtPontunarNumer = new JTextField(15);// change to 6
 	// JLabel lblVasaNumer = new JLabel("I Vasanum n :");
-	JTextField txtFetchedVasaN = new JTextField();// put variable string from
-													// Search method
+	JLabel txtFetchedVasaN = new JLabel();// put variable string from
+											// Search method
 	// try JTextField for lblFetchedVasaN instead and do .setEditable(false);
 
 	JLabel lblTax = new JLabel("Velja adgerd: ");
 
 	JButton bLeita = new JButton("Leita");
+	String msgText;
 
 	// JButton bDelete = new JButton("Fjarlaegja");
 
@@ -97,18 +99,24 @@ public class GUIvasaradarinn extends JFrame {
 	}
 
 	public void fetchVasa() {
+		String msgText;
 		try {
 			// put in a constractor to read a file in a prog sturtup
 			StackReader sr = new StackReader();
 			txtFetchedVasaN.setText(sr.SearchVasan(txtPontunarNumer.getText()));
-			try {
+			msgText= sr.SearchVasan(txtPontunarNumer.getText());
+			
+			
+			/*try {
 				UIManager
 						.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 			} catch (Exception e) {
-			}
-			int n = JOptionPane.showConfirmDialog(null,
-					"I Vasa No. " + sr.SearchVasan(txtPontunarNumer.getText())
-							+ " Delete?", null, JOptionPane.YES_NO_OPTION);
+			}*/
+			//UIManager.put("OptionPane.font", new Font("Tahoma", Font.BOLD, 20));
+			int n = JOptionPane.showConfirmDialog(null, "I Vasa No. " + "\n"
+			       
+					+ msgText + "\n"
+					+ " Delete?", null, JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				// StackReader sr = new StackReader();
 				sr.DeletePontun(txtPontunarNumer.getText());
@@ -123,16 +131,16 @@ public class GUIvasaradarinn extends JFrame {
 			txtFetchedVasaN.setText("Non-Numeric Data");
 		} catch (Exception e) {
 			txtFetchedVasaN.setText(e.getMessage());
-			
+
 		}
 
 	}
 
 	public static void main(String args[]) {
 		try {
+			
 			UIManager
-					.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-		} catch (Exception e) {
+			.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");	} catch (Exception e) {
 		}
 		GUIvasaradarinn gvr = new GUIvasaradarinn();
 		gvr.setSize(400, 150);
