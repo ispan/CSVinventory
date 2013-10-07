@@ -103,6 +103,8 @@ public class GUIvasaradarinn extends JFrame {
 		try {
 			// put in a constractor to read a file in a prog sturtup
 			StackReader sr = new StackReader();
+			
+			// check in a debuger for abandoned objects SR 
 			txtFetchedVasaN.setText(sr.SearchVasan(txtPontunarNumer.getText()));
 			msgText= sr.SearchVasan(txtPontunarNumer.getText());
 			

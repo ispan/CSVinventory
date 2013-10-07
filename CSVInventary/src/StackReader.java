@@ -20,7 +20,8 @@ public class StackReader {
 	private static BufferedReader cSVFileReader;
 	// private static BufferedWriter cSVFileWriter;
 
-	ArrayList<DTOPontunVasar> allarpontunar = new ArrayList<DTOPontunVasar>();
+	//ArrayList<DTOPontunVasar> allarpontunar = new ArrayList<DTOPontunVasar>();
+	Set<DTOPontunVasar> allarpontunar = new HashSet<DTOPontunVasar>();
 	// HASHtable hashmap key-value pairs
 	ArrayList<String> vasaArray = new ArrayList<String>();
 	private BufferedWriter out = null;
@@ -56,6 +57,13 @@ public class StackReader {
 				allarpontunar.add(temp);
 				System.out.println(); // Print the data line.
 				dataRow = cSVFileReader.readLine();
+				
+				
+				// get rid of a double entries here 
+				
+				
+				
+				
 			}
 		} catch (IOException e) {
 			// throw new IOException (e.getMessage());
