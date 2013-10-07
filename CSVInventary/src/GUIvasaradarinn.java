@@ -103,22 +103,21 @@ public class GUIvasaradarinn extends JFrame {
 		try {
 			// put in a constractor to read a file in a prog sturtup
 			StackReader sr = new StackReader();
-			
-			// check in a debuger for abandoned objects SR 
+
+			// check in a debuger for abandoned objects SR
 			txtFetchedVasaN.setText(sr.SearchVasan(txtPontunarNumer.getText()));
-			msgText= sr.SearchVasan(txtPontunarNumer.getText());
-			
-			
-			/*try {
-				UIManager
-						.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-			} catch (Exception e) {
-			}*/
-			//UIManager.put("OptionPane.font", new Font("Tahoma", Font.BOLD, 20));
+			msgText = sr.SearchVasan(txtPontunarNumer.getText());
+
+			/*
+			 * try { UIManager
+			 * .setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel"
+			 * ); } catch (Exception e) { }
+			 */
+			// UIManager.put("OptionPane.font", new Font("Tahoma", Font.BOLD,
+			// 20));
 			int n = JOptionPane.showConfirmDialog(null, "I Vasa No. " + "\n"
-			       
-					+ msgText + "\n"
-					+ " Delete?", null, JOptionPane.YES_NO_OPTION);
+
+			+ msgText + "\n" + " Delete?", null, JOptionPane.YES_NO_OPTION);
 			if (n == JOptionPane.YES_OPTION) {
 				// StackReader sr = new StackReader();
 				sr.DeletePontun(txtPontunarNumer.getText());
@@ -140,9 +139,10 @@ public class GUIvasaradarinn extends JFrame {
 
 	public static void main(String args[]) {
 		try {
-			
+
 			UIManager
-			.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");	} catch (Exception e) {
+					.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (Exception e) {
 		}
 		GUIvasaradarinn gvr = new GUIvasaradarinn();
 		gvr.setSize(400, 150);

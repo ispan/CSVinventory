@@ -27,45 +27,14 @@ public class StackReader {
 	private BufferedWriter out = null;
 	private FileOutputStream fos = null;
 	
-	String pontunarN = null;
-	String vasaN = null;
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((pontunarN == null) ? 0 : pontunarN.hashCode());
-		result = prime * result + ((vasaN == null) ? 0 : vasaN.hashCode());
-		return result;
-	}
 
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		StackReader other = (StackReader) obj;
-		if (pontunarN == null) {
-			if (other.pontunarN != null)
-				return false;
-		} else if (!pontunarN.equals(other.pontunarN))
-			return false;
-		if (vasaN == null) {
-			if (other.vasaN != null)
-				return false;
-		} else if (!vasaN.equals(other.vasaN))
-			return false;
-		return true;
-	}
 	
 	
-	StackReader() { // throws IOException
+	StackReader() { // throws IOExcepn tion
+		String pontunarN = null;
+		String vasaN = null;
 
 		DTOPontunVasar temp = null;
 		try {
@@ -77,6 +46,7 @@ public class StackReader {
 			while (dataRow != null) {
 				String[] dataArray = dataRow.split(",");
 				for (String item : dataArray) {
+				// TO DO make some error handling ( which comes from CSV) 
 					if (item.length() > 4) {
 						pontunarN = item;
 					} else {
@@ -114,6 +84,46 @@ public class StackReader {
 			}
 
 		}
+		
+		try {
+			//Writing back a file without double entries
+		
+			fos = new FileOutputStream("VasaSkra.dat");
+			out = new BufferedWriter(new OutputStreamWriter(fos));
+			for (DTOPontunVasar pairToWrite : allarpontunar) {
+				
+
+					String coma = ",";
+					out.write(pairToWrite.getPontunarN());
+					out.write(coma);
+					out.write(pairToWrite.getVasaN());
+					out.write(coma);
+					out.write("\n");
+				
+
+			}
+
+			// Flush the BUFFER !!!
+			
+			// finally  do  close 
+		} catch (IOException e) {
+			System.out.println(e);
+		} finally {
+			try {
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e);
+			}
+			try {
+				fos.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e);
+			}
+		}
+		
+		
 	}
 
 	public String SearchVasan(String enteredPontun) {
@@ -154,19 +164,6 @@ public class StackReader {
 		return vasaN;
 	}
 
-	/*public String DoubleEntry(String v) {
-		
-		for (String va : vasaArray) {
-			if (va.equalsIgnoreCase(v)) {
-
-			}
-		return v;
-		}
-		
-		return null;
-	}
-*/
-	
 
 	public void DeletePontun(String pontunToDelete) {
 	
