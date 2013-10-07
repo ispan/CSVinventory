@@ -26,7 +26,45 @@ public class StackReader {
 	ArrayList<String> vasaArray = new ArrayList<String>();
 	private BufferedWriter out = null;
 	private FileOutputStream fos = null;
+	
+	String pontunarN = null;
+	String vasaN = null;
 
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((pontunarN == null) ? 0 : pontunarN.hashCode());
+		result = prime * result + ((vasaN == null) ? 0 : vasaN.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StackReader other = (StackReader) obj;
+		if (pontunarN == null) {
+			if (other.pontunarN != null)
+				return false;
+		} else if (!pontunarN.equals(other.pontunarN))
+			return false;
+		if (vasaN == null) {
+			if (other.vasaN != null)
+				return false;
+		} else if (!vasaN.equals(other.vasaN))
+			return false;
+		return true;
+	}
+	
+	
 	StackReader() { // throws IOException
 
 		DTOPontunVasar temp = null;
@@ -35,8 +73,6 @@ public class StackReader {
 			String dataRow = cSVFileReader.readLine();
 			// ArrayList <DTOPontunVasar> allarpontunar = new
 			// ArrayList<DTOPontunVasar>();
-			String pontunarN = null;
-			String vasaN = null;
 
 			while (dataRow != null) {
 				String[] dataArray = dataRow.split(",");
