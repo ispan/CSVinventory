@@ -37,7 +37,7 @@ public class GUIvasaradarinn extends JFrame {
 	// JButton bDelete = new JButton("Fjarlaegja");
 
 	public GUIvasaradarinn() {
-		super("Vasaradarinn");
+		super("Vasaradarinn 1.9");
 		lpontunarNumer = new JLabel(" Pontunar N: ");
 		lpontunarNumer.setFont(new Font("Courier New", Font.ITALIC, 20));
 		// lpontunarNumer.setForeground(Color.GRAY);
