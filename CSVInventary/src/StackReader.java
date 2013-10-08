@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import java.util.HashSet;
 
-
 import java.util.Set;
 
 public class StackReader {
@@ -20,18 +19,14 @@ public class StackReader {
 	private static BufferedReader cSVFileReader;
 	// private static BufferedWriter cSVFileWriter;
 
-	//ArrayList<DTOPontunVasar> allarpontunar = new ArrayList<DTOPontunVasar>();
+	// ArrayList<DTOPontunVasar> allarpontunar = new
+	// ArrayList<DTOPontunVasar>();
 	Set<DTOPontunVasar> allarpontunar = new HashSet<DTOPontunVasar>();
 	// HASHtable hashmap key-value pairs
 	ArrayList<String> vasaArray = new ArrayList<String>();
 	private BufferedWriter out = null;
 	private FileOutputStream fos = null;
-	
 
-
-
-	
-	
 	StackReader() { // throws IOExcepn tion
 		String pontunarN = null;
 		String vasaN = null;
@@ -46,13 +41,13 @@ public class StackReader {
 			while (dataRow != null) {
 				String[] dataArray = dataRow.split(",");
 				for (String item : dataArray) {
-				// TO DO make some error handling ( which comes from CSV) 
-					if (item.length() > 4) {
+					// TO DO make some error handling ( which comes from CSV)
+					if (item.length() > 4 && item.length() < 7) {
 						pontunarN = item;
-					} else {
+					} else if (item.length() > 3 && item.length() < 5) {
 						vasaN = item;
 
-					}
+					}else {}
 					/*
 					 * temp = new DTOPontunVasar(pontunarN, vasaN);
 					 * allarpontunar.add(temp);
@@ -63,13 +58,9 @@ public class StackReader {
 				allarpontunar.add(temp);
 				System.out.println(); // Print the data line.
 				dataRow = cSVFileReader.readLine();
-				
-				
-				// get rid of a double entries here 
-				
-				
-				
-				
+
+				// get rid of a double entries here
+
 			}
 		} catch (IOException e) {
 			// throw new IOException (e.getMessage());
@@ -84,28 +75,26 @@ public class StackReader {
 			}
 
 		}
-		
+
 		try {
-			//Writing back a file without double entries
-		
+			// Writing back a file without double entries
+
 			fos = new FileOutputStream("VasaSkra.dat");
 			out = new BufferedWriter(new OutputStreamWriter(fos));
 			for (DTOPontunVasar pairToWrite : allarpontunar) {
-				
 
-					String coma = ",";
-					out.write(pairToWrite.getPontunarN());
-					out.write(coma);
-					out.write(pairToWrite.getVasaN());
-					out.write(coma);
-					out.write("\n");
-				
+				String coma = ",";
+				out.write(pairToWrite.getPontunarN());
+				out.write(coma);
+				out.write(pairToWrite.getVasaN());
+				out.write(coma);
+				out.write("\n");
 
 			}
 
 			// Flush the BUFFER !!!
-			
-			// finally  do  close 
+
+			// finally do close
 		} catch (IOException e) {
 			System.out.println(e);
 		} finally {
@@ -122,8 +111,7 @@ public class StackReader {
 				System.out.println(e);
 			}
 		}
-		
-		
+
 	}
 
 	public String SearchVasan(String enteredPontun) {
@@ -135,41 +123,42 @@ public class StackReader {
 			if (enteredPontun.equalsIgnoreCase(pairValue.getPontunarN())) {
 
 				tempVasaN = pairValue.getVasaN();
-			
-				 vasaArray.add(tempVasaN);
+
+				vasaArray.add(tempVasaN);
 
 			}
 
-			
 		}
-		 Set<String> set = new HashSet<String>(vasaArray);
 
-		    System.out.print("Remove duplicate result: ");
+		// remove, set is an overkill now
+		Set<String> set = new HashSet<String>(vasaArray);
 
-		    String[] result = new String[set.size()];
-		    set.toArray(result);
-		    for (String s : result) {
-		    	String semicol = ";";
-		      System.out.print(s + ", ");
-		      // adding a "rekka msg to output for values bigger then 1000
-		      // Ispan marking rekkar from 1 to 2999 . available figures are >=3000 
-		      if (Integer.parseInt(s)<=3000){
-		    	  vasaN = vasaN.concat(" Rekka#"+ s + semicol);
-		    	  
-		      }else{
-		      vasaN=vasaN.concat(" inni-"+s.substring(1)+ semicol);
-		      }
-		    }
+		System.out.print("Remove duplicate result: ");
+
+		String[] result = new String[set.size()];
+		set.toArray(result);
+		for (String s : result) {
+			String semicol = ";";
+			System.out.print(s + ", ");
+			// adding a "rekka msg to output for values bigger then 1000
+			// Ispan marking rekkar from 1 to 2999 . available figures are
+			// >=3000
+			if (Integer.parseInt(s) <= 3000) {
+				vasaN = vasaN.concat(" Rekka#" + s + semicol);
+
+			} else {
+				vasaN = vasaN.concat(" inni-" + s.substring(1) + semicol);
+			}
+		}
 
 		return vasaN;
 	}
 
-
 	public void DeletePontun(String pontunToDelete) {
-	
+
 		try {
-			//FileOutputStream fos = null;
-		
+			// FileOutputStream fos = null;
+
 			fos = new FileOutputStream("VasaSkra.dat");
 			out = new BufferedWriter(new OutputStreamWriter(fos));
 			for (DTOPontunVasar pairToWrite : allarpontunar) {
@@ -188,8 +177,8 @@ public class StackReader {
 			}
 
 			// Flush the BUFFER !!!
-			
-			// finally  do  close 
+
+			// finally do close
 		} catch (IOException e) {
 			System.out.println(e);
 		} finally {
