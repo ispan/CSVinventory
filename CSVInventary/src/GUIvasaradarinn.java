@@ -115,6 +115,10 @@ public class GUIvasaradarinn extends JFrame {
 			 */
 			// UIManager.put("OptionPane.font", new Font("Tahoma", Font.BOLD,
 			// 20));
+			
+			// change UI for sales department , make DELETE option unavalable.
+			
+			
 			int n = JOptionPane.showConfirmDialog(null, "I Vasa No. " + "\n"
 
 			+ msgText + "\n" + " Delete?", null, JOptionPane.YES_NO_OPTION);
