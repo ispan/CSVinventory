@@ -62,10 +62,11 @@ public class GUIvasaradarinn extends JFrame {
 		lblVasaNumer.setFont(new Font("Courier New", Font.ITALIC, 40));
 		bLeita.setFont(new Font("Courier New", Font.ITALIC, 40));
 		bLeita.setBackground(Color.GREEN);
+		txtFetchedVasaN.setFont(new Font("Helvetica", Font.ITALIC, 30));
 		GridLayout gr = new GridLayout(3, 2, 1, 1);
 		setLayout(gr);
 
-		add(lpontunarNumer);
+		add(lpontunarNumer); 
 		add(txtPontunarNumer);
 		add(lblVasaNumer);
 		add(txtFetchedVasaN);
@@ -119,6 +120,7 @@ public class GUIvasaradarinn extends JFrame {
 
 	public void fetchVasa() {
 		String msgText;
+		stopPlayback= false;
 		try {
 			// put in a constractor to read a file in a prog sturtup
 			StackReader sr = new StackReader();
